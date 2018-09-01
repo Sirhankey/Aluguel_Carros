@@ -1,0 +1,79 @@
+package sample;
+
+
+
+public class Carro {
+
+    private int codigoCarro;
+    private String nome;
+    private double valor;
+    private boolean carroNovo;
+    private boolean carroAlugado;
+    private MarcaCarro marcaCarro;
+
+
+    public Carro(int codigoCarro, String nome, double valor) {
+        this.codigoCarro = codigoCarro;
+        this.nome = nome;
+        this.valor = valor;
+        carroAlugado = false;
+    }
+
+    public Carro() {
+    }
+
+    public int getCodigo() {
+        return codigoCarro;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigoCarro = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public boolean isCarroNovo() {
+        return carroNovo;
+    }
+
+    public void setCarroNovo(boolean carroNovo) {
+        this.carroNovo = carroNovo;
+    }
+
+    public boolean isCarroAlugado() {
+        return carroAlugado;
+    }
+
+    public void setCarroAlugado(boolean carroAlugado) {
+        this.carroAlugado = carroAlugado;
+    }
+
+    public MarcaCarro getMarcaCarro() {
+        return marcaCarro;
+    }
+
+    public void setMarcaCarro(MarcaCarro marcaCarro) {
+        this.marcaCarro = marcaCarro;
+    }
+
+//método próprio carro alugado
+
+    public boolean carroEstaAlugado(int codigoCarro) {
+        return this.isCarroAlugado();
+    }
+
+}
