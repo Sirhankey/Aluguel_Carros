@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#tab1" text="Cadastro de Clientes" />
+                  <MenuItem mnemonicParsing="false" onAction="#tab2" text="Cadastro de Carros" />
+                  <MenuItem mnemonicParsing="false" onAction="#tab3" text="Aluguéis" />
+                  <MenuItem mnemonicParsing="false" onAction="#tab4" text="Relatórios" />
+                  <MenuItem mnemonicParsing="false" onAction="#sair" text="Fechar" />
+                  <MenuItem mnemonicParsing="false" onAction="#credits" text="Credits" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <center>
+                <TabPane fx:id="principal" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                    <tabs>
+                        <Tab text="Cadastro de Clientes">
+                            <content>
+                                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                    <top>
+                                        <Label text="CADASTRO DE CLIENTES" BorderPane.alignment="CENTER">
+                                            <padding>
+                                                <Insets top="5.0" />
+                                            </padding>
+                                            <BorderPane.margin>
+                                                <Insets right="50.0" />
+                                            </BorderPane.margin>
+                                        </Label>
+                                    </top>
+                                    <center>
+                                        <VBox spacing="5.0" BorderPane.alignment="CENTER">
+                                            <children>
+                                                <HBox prefHeight="25.0" prefWidth="590.0" spacing="61.0">
+                                                    <children>
+                                                        <Label text="Nome : ">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </Label>
+                                                        <TextField fx:id="nome_Cliente" alignment="CENTER" promptText="Nome do Cliente" style="-fx-background-radius: 10;">
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </TextField>
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets top="5.0" />
+                                                    </VBox.margin>
+                                                </HBox>
+                                                <HBox layoutX="15.0" layoutY="15.0" spacing="48.0">
+                                                    <children>
+                                                        <Label text="Telefone : ">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </Label>
+                                                        <TextField fx:id="telefone_Cliente" alignment="CENTER" promptText="(XX) XXXX-XXXX" style="-fx-background-radius: 10;">
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </TextField>
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets />
+                                                    </VBox.margin>
+                                                </HBox>
+                                                <HBox layoutX="15.0" layoutY="50.0" spacing="44.0">
+                                                    <children>
+                                                        <Label text="Endereço : ">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </Label>
+                                                        <TextField fx:id="endereco_Cliente" alignment="CENTER" promptText="Endereço do Cliente" style="-fx-background-radius: 10;">
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </TextField>
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets />
+                                                    </VBox.margin>
+                                                </HBox>
+                                                <HBox layoutX="15.0" layoutY="50.0" spacing="62.0">
+                                                    <children>
+                                                        <Label text="Bairro : ">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </Label>
+                                                        <TextField fx:id="bairro_Cliente" alignment="CENTER" promptText="Bairro do Cliente" style="-fx-background-radius: 10;">
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </TextField>
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets />
+                                                    </VBox.margin>
+                                                </HBox>
+                                                <HBox spacing="60.0">
+                                                    <children>
+                                                        <Label text="Cidade :">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </Label>
+                                                        <TextField fx:id="cidade_Cliente" alignment="CENTER" promptText="Cidade do Cliente" style="-fx-background-radius: 10;">
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </TextField>
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets />
+                                                    </VBox.margin>
+                                                </HBox>
+                                                <HBox spacing="76.0">
+                                                    <children>
+                                                        <Label text="Cep :">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </Label>
+                                                        <TextField fx:id="cep_Cliente" alignment="CENTER" promptText="XXXXX-XXX" style="-fx-background-radius: 10;">
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </TextField>
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets />
+                                                    </VBox.margin>
+                                                </HBox>
+                                                <HBox spacing="40.0">
+                                                    <children>
+                                                        <Label text="Estado(UF) :">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </Label>
+                                          <ComboBox fx:id="estado_Cliente" prefWidth="150.0" style="-fx-background-radius: 10;" />
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets />
+                                                    </VBox.margin>
+                                                </HBox>
+                                                <HBox spacing="5.0">
+                                                    <children>
+                                                        <Label text="Tipo de Endereço :">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </Label>
+                                          <ComboBox fx:id="tipoEnd_Cliente" prefWidth="150.0" style="-fx-background-radius: 10;" />
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets />
+                                                    </VBox.margin>
+                                                </HBox>
+                                                <HBox spacing="8.0">
+                                                    <children>
+                                                        <Label prefHeight="17.0" prefWidth="96.0" text="Bom pagador :">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </Label>
+                                          <ComboBox fx:id="bomPagador_Cliente" prefWidth="150.0" style="-fx-background-radius: 10;" />
+                                                        <Region HBox.hgrow="ALWAYS" />
+                                                        <HBox spacing="20.0">
+                                                            <children>
+                                                                <Button mnemonicParsing="false" onAction="#limpar_Cadastro_Clientes" style="-fx-background-radius: 10;" text="Limpar">
+                                                                    <HBox.margin>
+                                                                        <Insets />
+                                                                    </HBox.margin>
+                                                                </Button>
+                                                                <Button mnemonicParsing="false" onAction="#cadastrar_Clientes" style="-fx-background-radius: 10;" text="Cadastrar">
+                                                                    <HBox.margin>
+                                                                        <Insets />
+                                                                    </HBox.margin>
+                                                                </Button>
+                                                            </children>
+                                                            <HBox.margin>
+                                                                <Insets right="20.0" />
+                                                            </HBox.margin>
+                                                        </HBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                            <BorderPane.margin>
+                                                <Insets left="5.0" top="5.0" />
+                                            </BorderPane.margin>
+                                        </VBox>
+                                    </center>
+                                </BorderPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Cadastro de Carros">
+                            <content>
+                                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                    <top>
+                                        <Label text="CADASTRO DE CARROS" BorderPane.alignment="CENTER">
+                                            <padding>
+                                                <Insets top="5.0" />
+                                            </padding>
+                                            <BorderPane.margin>
+                                                <Insets right="50.0" />
+                                            </BorderPane.margin>
+                                        </Label>
+                                    </top>
+                                    <center>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                            <children>
+                                                <HBox spacing="55.0">
+                                                    <children>
+                                                        <Label text="Marca : ">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                        </Label>
+                                          <ComboBox fx:id="marca_Carro" prefWidth="150.0" style="-fx-background-radius: 10;" />
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets top="5.0" />
+                                                    </VBox.margin>
+                                                </HBox>
+                                                <HBox spacing="58.0">
+                                                    <children>
+                                                        <Label text="Carro : ">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                        </Label>
+                                                        <TextField fx:id="nome_Carro" alignment="CENTER" promptText="Descrição do Carro" style="-fx-background-radius: 10;" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="47.0" spacing="40.0">
+                                                    <children>
+                                                        <Label text="Valor/dia : ">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                        </Label>
+                                                        <TextField fx:id="valor_Carro" alignment="CENTER" promptText="R$ / dia" style="-fx-background-radius: 10;" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="82.0">
+                                                    <children>
+                                                        <Label text="Código do Carro : ">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                        </Label>
+                                                        <TextField fx:id="codigo_Carro" alignment="CENTER" promptText="Código do Carro" style="-fx-background-radius: 10;" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="117.0" spacing="30.0">
+                                                    <children>
+                                                        <Label text="Carro novo : ">
+                                                            <opaqueInsets>
+                                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                            </opaqueInsets>
+                                                        </Label>
+                                          <ComboBox fx:id="novo_Carro" prefWidth="150.0" style="-fx-background-radius: 10;" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox spacing="20.0">
+                                                    <children>
+                                                        <Region HBox.hgrow="ALWAYS" />
+                                                        <Button mnemonicParsing="false" onAction="#limpar_Cadastro_Carros" style="-fx-background-radius: 10;" text="Limpar">
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </Button>
+                                                        <Button mnemonicParsing="false" onAction="#cadastrar_Carros" style="-fx-background-radius: 10;" text="Cadastrar">
+                                                            <HBox.margin>
+                                                                <Insets right="20.0" />
+                                                            </HBox.margin>
+                                                        </Button>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                            <BorderPane.margin>
+                                                <Insets left="5.0" top="10.0" />
+                                            </BorderPane.margin>
+                                        </VBox>
+                                    </center>
+                                </BorderPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Aluguéis">
+                            <content>
+                                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                    <center>
+                                        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+                                            <children>
+                                                <HBox layoutX="10.0" layoutY="10.0" spacing="61.0">
+                                                    <children>
+                                                        <Label text="Código do cliente : " />
+                                                        <TextField fx:id="codigo_Cliente" alignment="CENTER" promptText="Código do Cliente" style="-fx-background-radius: 10;" />
+                                                        <Region HBox.hgrow="ALWAYS">
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </Region>
+                                                        <Button mnemonicParsing="false" onAction="#pesquisar_Cliente_Alugueis" style="-fx-background-radius: 10;" text="Pesquisar" />
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets right="20.0" />
+                                                    </VBox.margin>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="42.0">
+                                                    <children>
+                                                        <Label fx:id="aluguel_Mensagem_BomPagador" prefHeight="25.0" prefWidth="590.0" />
+                                                    </children>
+                                                </HBox>
+                                                <Separator prefWidth="200.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" top="10.0" />
+                                                    </VBox.margin>
+                                                </Separator>
+                                                <HBox layoutX="10.0" layoutY="74.0" spacing="70.0">
+                                                    <children>
+                                                        <Label text="Código do carro : " />
+                                                        <TextField fx:id="codigo_Carro_Aluguel" alignment="CENTER" editable="false" promptText="Código do Carro" style="-fx-background-radius: 10;" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="106.0" spacing="14.0">
+                                                    <children>
+                                                        <Label text="Data de retirada do veículo : " />
+                                                        <TextField fx:id="data_Retirada_Veiculo" alignment="CENTER" editable="false" promptText="DD/MM/AAAA" style="-fx-background-radius: 10;" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="138.0">
+                                                    <children>
+                                                        <Label text="Data de devolução do veículo : " />
+                                                        <TextField fx:id="data_Devolucao_Veiculo" alignment="CENTER" editable="false" promptText="DD/MM/AAAA" style="-fx-background-radius: 10;" />
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Button mnemonicParsing="false" onAction="#concluir_Alugueis" style="-fx-background-radius: 10;" text="Concluir" />
+                                                    </children>
+                                       <VBox.margin>
+                                          <Insets right="20.0" />
+                                       </VBox.margin>
+                                                </HBox>
+                                                <Separator prefWidth="200.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" top="10.0" />
+                                                    </VBox.margin>
+                                                </Separator>
+                                                <Label fx:id="aluguel_Mensagem_Final" />
+                                            </children>
+                                            <BorderPane.margin>
+                                                <Insets left="5.0" top="5.0" />
+                                            </BorderPane.margin>
+                                        </VBox>
+                                    </center>
+                                    <top>
+                                        <Label text="ALUGUÉIS" BorderPane.alignment="CENTER">
+                                            <padding>
+                                                <Insets top="5.0" />
+                                            </padding>
+                                            <BorderPane.margin>
+                                                <Insets right="50.0" />
+                                            </BorderPane.margin>
+                                        </Label>
+                                    </top>
+                                </BorderPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Relatórios">
+                            <content>
+                                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                    <top>
+                                        <Label text="RELATÓRIOS" BorderPane.alignment="CENTER">
+                                            <BorderPane.margin>
+                                                <Insets right="50.0" />
+                                            </BorderPane.margin>
+                                            <padding>
+                                                <Insets top="5.0" />
+                                            </padding>
+                                        </Label>
+                                    </top>
+                           <left>
+                              <VBox spacing="20.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <CheckBox fx:id="checkBoxClientes" mnemonicParsing="false" onAction="#handleClientesBox" text="Clientes" />
+                                    <CheckBox fx:id="checkBoxCarros" mnemonicParsing="false" onAction="#handleCarrosBox" text="Carros" />
+                                    <CheckBox fx:id="checkBoxAlugueis" mnemonicParsing="false" onAction="#handleAlugueisBox" text="Aluguéis" />
+                                 </children>
+                                 <BorderPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </BorderPane.margin>
+                              </VBox>
+                           </left>
+                           <center>
+                              <VBox BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Separator />
+                                    <HBox VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <Separator orientation="VERTICAL" />
+                                          <GridPane hgap="5.0" vgap="5.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="ALWAYS" />
+                                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints vgrow="SOMETIMES" />
+                                              <RowConstraints valignment="TOP" vgrow="ALWAYS" />
+                                            </rowConstraints>
+                                             <children>
+                                                <TextField fx:id="textFieldRelatorio" style="-fx-background-radius: 10;" />
+                                                <Label fx:id="relatorio_Dados" GridPane.rowIndex="1" />
+                                                <Button mnemonicParsing="false" onAction="#pesquisar_Relatorios" style="-fx-background-radius: 10;" text="Pesquisar" GridPane.columnIndex="1" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="2.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </center>
+                                </BorderPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </center>
+        </BorderPane>
+    </center>
+   <bottom>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="2.0" top="2.0" />
+               </VBox.margin>
+            </Separator>
+            <Label text="Aluguel de Carros Desenvolvido por @Daniel Guimarães" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="2.0" left="5.0" />
+         </BorderPane.margin>
+      </VBox>
+   </bottom>
+</BorderPane>
