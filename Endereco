@@ -1,0 +1,84 @@
+package sample;
+
+public class Endereco {
+
+    private TipoEndereco tipoEndereco;
+    private String endereco;
+    private String bairro;
+    private String cidade;
+    private String cep;
+    private UF uf;
+
+
+    //Construtor
+
+
+    public Endereco(String endereco, String bairro, String cidade, String cep) {
+        this.endereco = endereco;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.cep = cep;
+    }
+
+    public Endereco(TipoEndereco tipoEndereco, String endereco, String bairro, String cidade, String cep, UF uf) {
+        this.tipoEndereco = tipoEndereco;
+        this.endereco = endereco;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.cep = cep;
+        this.uf = uf;
+    }
+
+    public Endereco() {
+    }
+
+    // Set e Get
+    public TipoEndereco getTipoEndereco() {
+        return tipoEndereco;
+    }
+
+    public void setTipoEndereco(TipoEndereco tipoEndereco) {
+        this.tipoEndereco = tipoEndereco;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public UF getUf() {
+        return uf;
+    }
+
+    public void setUf(UF uf) {
+        this.uf = uf;
+    }
+
+}
