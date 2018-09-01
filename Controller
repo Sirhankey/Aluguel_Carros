@@ -1,0 +1,719 @@
+package sample;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.*;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
+public class Controller implements Initializable {
+    @FXML
+    private TabPane principal;
+
+    //cliente
+    @FXML
+    private TextField nome_Cliente;
+
+    @FXML
+    private TextField telefone_Cliente;
+
+    @FXML
+    private TextField endereco_Cliente;
+
+    @FXML
+    private TextField bairro_Cliente;
+
+    @FXML
+    private TextField cidade_Cliente;
+
+    @FXML
+    private TextField cep_Cliente;
+
+    @FXML
+    private ComboBox estado_Cliente;
+
+    @FXML
+    private ComboBox tipoEnd_Cliente;
+
+    @FXML
+    private ComboBox bomPagador_Cliente;
+
+
+    //carro
+
+    @FXML
+    private TextField nome_Carro;
+    @FXML
+    private TextField valor_Carro;
+    @FXML
+    private TextField codigo_Carro;
+    @FXML
+    private ComboBox marca_Carro;
+    @FXML
+    private ComboBox novo_Carro;
+
+    // alugueis
+    @FXML
+    private TextField codigo_Cliente;
+    @FXML
+    private TextField data_Retirada_Veiculo;
+    @FXML
+    private TextField data_Devolucao_Veiculo;
+    @FXML
+    private TextField codigo_Carro_Aluguel;
+
+    @FXML
+    private Label aluguel_Mensagem_Final;
+    @FXML
+    private Label aluguel_Mensagem_BomPagador;
+
+
+
+
+
+    //relatórios
+
+    @FXML
+    private Label relatorio_Dados;
+    @FXML
+    private CheckBox checkBoxClientes;
+    @FXML
+    private CheckBox checkBoxCarros;
+    @FXML
+    private CheckBox checkBoxAlugueis;
+    @FXML
+    private TextField textFieldRelatorio;
+
+    @FXML
+    private void handleClientesBox(){
+        textFieldRelatorio.setPromptText("Código Cliente");
+        checkBoxCarros.setSelected(false);
+        checkBoxAlugueis.setSelected(false);
+    }
+    @FXML
+    private void handleCarrosBox(){
+        textFieldRelatorio.setPromptText("Código Carro");
+        checkBoxClientes.setSelected(false);
+        checkBoxAlugueis.setSelected(false);
+    }
+    @FXML
+    private void handleAlugueisBox(){
+        textFieldRelatorio.setPromptText("Código Aluguel");
+        checkBoxCarros.setSelected(false);
+        checkBoxClientes.setSelected(false);
+    }
+
+
+
+
+    // Cadastra os clientes
+    public void cadastrar_Clientes() {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        if (nome_Cliente.getText().equals("")) {
+            alert.setTitle("Cadastro sem nome!");
+            alert.setHeaderText("Não é possível cadastrar um cliente sem o nome.");
+            alert.showAndWait();
+        } else if (telefone_Cliente.getText().equals("")) {
+            alert.setTitle("Cadastro sem telefone!");
+            alert.setHeaderText("Não é possível cadastrar um cliente sem o número de telefone.");
+            alert.showAndWait();
+        } else if (endereco_Cliente.getText().equals("")) {
+            alert.setTitle("Cadastro sem endereço!");
+            alert.setHeaderText("Não é possível cadastrar um cliente sem o endereço.");
+            alert.showAndWait();
+        } else if (bairro_Cliente.getText().equals("")) {
+            alert.setTitle("Cadastro sem bairro!");
+            alert.setHeaderText("Não é possível cadastrar um cliente sem o bairro.");
+            alert.showAndWait();
+        } else if (cidade_Cliente.getText().equals("")) {
+            alert.setTitle("Cadastro sem cidade!");
+            alert.setHeaderText("Não é possível cadastrar um cliente sem a cidade.");
+            alert.showAndWait();
+        } else if (cep_Cliente.getText().equals("")) {
+            alert.setTitle("Cadastro sem CEP!");
+            alert.setHeaderText("Não é possível cadastrar um cliente sem o CEP.");
+            alert.showAndWait();
+        } else if (estado_Cliente.getValue().equals("Estados")) {
+            alert.setTitle("Cadastro sem estado!");
+            alert.setHeaderText("Não é possível cadastrar um cliente sem o estado.");
+            alert.showAndWait();
+        } else if (tipoEnd_Cliente.getValue().equals("Tipo Endereço")) {
+            alert.setTitle("Cadastro sem tipo!");
+            alert.setHeaderText("Não é possível cadastrar um cliente sem o tipo de endereço.");
+            alert.showAndWait();
+        } else if (bomPagador_Cliente.getValue().equals("Bom Pagador")) {
+            alert.setTitle("Cadastro sem bom pagador!");
+            alert.setHeaderText("Não é possível cadastrar um cliente sem informar se é bom pagador.");
+            alert.showAndWait();
+
+        }else {
+
+            String nome = nome_Cliente.getText();
+
+            String telefone = telefone_Cliente.getText();
+
+            String endereco = endereco_Cliente.getText();
+
+            String bairro = bairro_Cliente.getText();
+
+            String cidade = cidade_Cliente.getText();
+
+            String cep = cep_Cliente.getText();
+
+
+            //String endereco, String bairro, String cidade, String cep,  String nome, String telefone
+            Cliente clienteCadastrado = new Cliente(endereco,bairro,cidade,cep,nome,telefone);
+            cadastrarClienteTxt(clienteCadastrado);
+            alert.setTitle("Cliente Cadastrado com Sucesso!");
+            alert.setHeaderText("Cliente: "+clienteCadastrado.getNome()+" | Código: "+clienteCadastrado.getCodigo());
+            alert.showAndWait();
+            limpar_Cadastro_Clientes();
+        }
+    }
+    // cadastra os carros
+
+
+
+    public void cadastrar_Carros() {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        if (nome_Carro.getText().equals("")) {
+            alert.setTitle("Cadastro sem nome!");
+            alert.setHeaderText("Não é possível cadastrar um carro sem a descrição.");
+            alert.showAndWait();
+        } else if (valor_Carro.getText().equals("")) {
+            alert.setTitle("Cadastro sem valor!");
+            alert.setHeaderText("Não é possível cadastrar um carro sem o valor.");
+            alert.showAndWait();
+        } else if (codigo_Carro.getText().equals("")) {
+            alert.setTitle("Cadastro sem código!");
+            alert.setHeaderText("Não é possível cadastrar um carro sem o código.");
+            alert.showAndWait();
+        }else if (marca_Carro.getValue().equals("Marca")) {
+            alert.setTitle("Cadastro sem marca!");
+            alert.setHeaderText("Não é possível cadastrar um carro sem a marca.");
+            alert.showAndWait();
+        }else if (novo_Carro.getValue().equals("Carro Novo")) {
+            alert.setTitle("Cadastro sem informar se é zero!");
+            alert.setHeaderText("Não é possível cadastrar um carro sem informar se o mesmo é novo.");
+            alert.showAndWait();
+        }else {
+
+
+            String nome = nome_Carro.getText();
+
+
+            Integer codigo = Integer.valueOf(codigo_Carro.getText());
+            Double valor = Double.valueOf(valor_Carro.getText());
+
+            Carro carroCadastrado = new Carro(codigo,nome,valor);
+            cadastrarCarroTxt(carroCadastrado);
+
+            alert.setTitle("Carro Cadastrado com Sucesso!");
+            alert.setHeaderText("Carro: "+carroCadastrado.getNome()+" | Código: "+carroCadastrado.getCodigo());
+            alert.showAndWait();
+            limpar_Cadastro_Carros();
+
+
+        }
+    }
+
+
+    public void cadastrarClienteTxt(Cliente cliente){
+        File f = new File("Cliente_"+cliente.getCodigo()+".txt");
+        try {
+            FileWriter fw = new FileWriter(f);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            if(bomPagador_Cliente.getValue().equals("Sim")){
+                bw.write("1");
+            }else bw.write("0");
+            bw.newLine();
+            bw.write("################################");
+
+            bw.newLine();
+            bw.write("Código do Cliente : "+cliente.getCodigo());
+            bw.newLine();
+
+            bw.write("Nome : "+cliente.getNome());
+            bw.newLine();
+
+            bw.write("Telefone : "+cliente.getTelefone());
+            bw.newLine();
+
+            bw.write("Endereco : "+cliente.getEndereco());
+            bw.newLine();
+
+            bw.write("Bairro : "+cliente.getBairro());
+            bw.newLine();
+
+            bw.write("Cidade : "+cliente.getCidade());
+            bw.newLine();
+
+            bw.write("CEP : "+cliente.getCep());
+            bw.newLine();
+
+            bw.write("Estado(UF) : "+estado_Cliente.getValue());
+            bw.newLine();
+
+            bw.write("Tipo Endereço : "+tipoEnd_Cliente.getValue());
+            bw.newLine();
+
+            bw.write("Bom Pagador : "+bomPagador_Cliente.getValue());
+            bw.newLine();
+
+
+
+            bw.flush();
+            bw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cadastrarCarroTxt(Carro carro){
+        File f = new File("Carro_"+carro.getNome()+".txt");
+        try {
+            FileWriter fw = new FileWriter(f);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            if (carro.isCarroAlugado())bw.write("1");
+            else bw.write("0");
+
+            bw.newLine();
+            bw.write("################################");
+
+            bw.newLine();
+            bw.write("Código do Carro : "+carro.getCodigo());
+            bw.newLine();
+
+            bw.write("Marca : "+marca_Carro.getValue());
+            bw.newLine();
+
+            bw.write("Nome : "+carro.getNome());
+            bw.newLine();
+
+            bw.write("Valor : "+carro.getValor());
+            bw.newLine();
+
+            bw.write("Novo : "+novo_Carro.getValue());
+            bw.newLine();
+
+
+            bw.write("Alugado : "+carro.isCarroAlugado());
+            bw.newLine();
+
+            bw.flush();
+            bw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void limpar_Cadastro_Carros(){
+
+        nome_Carro.setText("");
+        valor_Carro.setText("");
+        codigo_Carro.setText("");
+        marca_Carro.setValue("Marca");
+        novo_Carro.setValue("Carro Novo");
+
+    }
+
+    public void limpar_Cadastro_Clientes(){
+
+    nome_Cliente.setText("");
+    telefone_Cliente.setText("");
+    endereco_Cliente.setText("");
+    bairro_Cliente.setText("");
+    cidade_Cliente.setText("");
+    cep_Cliente.setText("");
+    estado_Cliente.setValue("Estados");
+    tipoEnd_Cliente.setValue("Tipo Endereço");
+    bomPagador_Cliente.setValue("Bom Pagador");
+
+    }
+
+    public void concluir_Alugueis() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        String nome = "Carro_" + codigo_Carro_Aluguel.getText() + ".txt";
+        if (codigo_Carro_Aluguel.getText().equals("")) {
+            alert.setTitle("Código do Veículo!");
+            alert.setHeaderText("Escolha o Código do veículo.");
+            alert.showAndWait();
+        } else {
+
+
+            try {
+                FileReader arq = new FileReader(nome);
+                BufferedReader lerArq = new BufferedReader(arq);
+
+                String linha = lerArq.readLine();
+
+                String linhaNomeCarro = Files.readAllLines(Paths.get(nome)).get(4);
+                String linhaCodCarro = Files.readAllLines(Paths.get(nome)).get(2);
+                String linhaMarcaCarro = Files.readAllLines(Paths.get(nome)).get(3);
+                String linhaValorCarro = Files.readAllLines(Paths.get(nome)).get(5);
+                String linhaNovoCarro = Files.readAllLines(Paths.get(nome)).get(6);
+
+                if (linha.equals("1")) {
+
+                    aluguel_Mensagem_Final.setText(linhaNomeCarro + " está alugado. Escolha outro modelo!");
+                } else {
+
+
+                    if (data_Retirada_Veiculo.getText().equals("")) {
+                        alert.setTitle("Data de Retirada!");
+                        alert.setHeaderText("Escolha uma data de Retirada.");
+                        alert.showAndWait();
+                    } else if (data_Devolucao_Veiculo.getText().equals("")) {
+                        alert.setTitle("Data de Devolução!");
+                        alert.setHeaderText("Escolha uma data de Devolução.");
+                        alert.showAndWait();
+                    } else {
+
+                        aluguel_Mensagem_Final.setText("Carro alugado com SUCESSO!\n" + linhaCodCarro + "\n" + linhaNomeCarro + "\n" + linhaMarcaCarro + "\n" + linhaValorCarro
+                                + " (R$/dia)\n" + "Data Retirada do Veículo: " + data_Retirada_Veiculo.getText() + "\n" + "Data Devolução do Veículo: " + data_Devolucao_Veiculo.getText());
+
+
+                        //Modifica txt Carro
+                        File f = new File("Carro_" + codigo_Carro_Aluguel.getText() + ".txt");
+                        try {
+                            FileWriter fw = new FileWriter(f);
+                            BufferedWriter bw = new BufferedWriter(fw);
+
+                            bw.write("1");
+
+                            bw.newLine();
+                            bw.write("################################");
+
+                            bw.newLine();
+                            bw.write( linhaCodCarro);
+                            bw.newLine();
+
+                            bw.write(linhaMarcaCarro);
+                            bw.newLine();
+
+                            bw.write(linhaNomeCarro);
+                            bw.newLine();
+
+                            bw.write(linhaValorCarro);
+                            bw.newLine();
+
+                            bw.write(linhaNovoCarro);
+                            bw.newLine();
+
+
+                            bw.write("Alugado : true");
+                            bw.newLine();
+
+                            bw.flush();
+                            bw.close();
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+
+                    //Cria txt Aluguel
+                    File f = new File("Aluguel_" + codigo_Carro_Aluguel.getText() + ".txt");
+                    try {
+                        FileWriter fw = new FileWriter(f);
+                        BufferedWriter bw = new BufferedWriter(fw);
+
+                        bw.write("################################");
+
+                        bw.newLine();
+                        bw.write(linhaCodCarro);
+                        bw.newLine();
+
+                        bw.write(linhaMarcaCarro);
+                        bw.newLine();
+
+                        bw.write(linhaNomeCarro);
+                        bw.newLine();
+
+                        bw.write(linhaValorCarro);
+                        bw.newLine();
+
+                        bw.write("Data Retirada : " + data_Retirada_Veiculo.getText());
+                        bw.newLine();
+
+
+                        bw.write("Data Devolução : " + data_Devolucao_Veiculo.getText());
+                        bw.newLine();
+
+                        bw.flush();
+                        bw.close();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+                arq.close();
+            } catch (IOException e) {
+                System.err.printf("Erro na abertura do arquivo: %s.\n",
+                        e.getMessage());
+            }
+        }
+    }
+
+    public void pesquisar_Relatorios() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        String nome;
+        ArrayList<String> arrayList = new ArrayList();
+
+        if (textFieldRelatorio.getText().equals("")) {
+            alert.setTitle("Código");
+            alert.setHeaderText("Escolha o Código.");
+            alert.showAndWait();
+        } else if (checkBoxClientes.isSelected()) {
+            nome = "Cliente_" + textFieldRelatorio.getText() + ".txt";
+            try {
+                FileReader arq = new FileReader(nome);
+                BufferedReader lerArq = new BufferedReader(arq);
+
+
+                String linha = lerArq.readLine();
+
+                while (linha != null) {
+                    System.out.printf("%s\n", linha);
+                    arrayList.add(linha);
+
+                    linha = lerArq.readLine(); // lê da segunda até a última linha
+                }
+
+                arq.close();
+            } catch (IOException e) {
+                System.err.printf("Erro na abertura do arquivo: %s.\n",
+                        e.getMessage());
+                alert.setTitle("Cliente não encontrado!");
+                alert.setHeaderText("Escolha outro código de Cliente.");
+                alert.showAndWait();
+                textFieldRelatorio.setText("");
+            }
+
+            System.out.println();
+            String labelTexto = "";
+            for (int j = 1; j < arrayList.size(); j++) {
+                System.out.println(arrayList.get(j));
+                labelTexto = labelTexto + "\n" + arrayList.get(j);
+            }
+            relatorio_Dados.setText(labelTexto);
+
+        }
+
+        if (checkBoxCarros.isSelected()) {
+            nome = "Carro_" + textFieldRelatorio.getText() + ".txt";
+            try {
+                FileReader arq = new FileReader(nome);
+                BufferedReader lerArq = new BufferedReader(arq);
+
+
+                String linha = lerArq.readLine();
+
+                while (linha != null) {
+                    System.out.printf("%s\n", linha);
+                    arrayList.add(linha);
+
+                    linha = lerArq.readLine(); // lê da segunda até a última linha
+                }
+
+                arq.close();
+            } catch (IOException e) {
+                System.err.printf("Erro na abertura do arquivo: %s.\n",
+                        e.getMessage());
+                alert.setTitle("Carro não encontrado!");
+                alert.setHeaderText("Escolha outro código de Carro.");
+                alert.showAndWait();
+                textFieldRelatorio.setText("");
+            }
+
+            System.out.println();
+            String labelTexto = "";
+            for (int j = 1; j < arrayList.size(); j++) {
+                System.out.println(arrayList.get(j));
+                labelTexto = labelTexto + "\n" + arrayList.get(j);
+            }
+            relatorio_Dados.setText(labelTexto);
+        }
+        if (checkBoxAlugueis.isSelected()) {
+            nome = "Aluguel_" + textFieldRelatorio.getText() + ".txt";
+            try {
+                FileReader arq = new FileReader(nome);
+                BufferedReader lerArq = new BufferedReader(arq);
+
+
+                String linha = lerArq.readLine();
+
+                while (linha != null) {
+                    System.out.printf("%s\n", linha);
+                    arrayList.add(linha);
+
+                    linha = lerArq.readLine(); // lê da segunda até a última linha
+                }
+
+                arq.close();
+            } catch (IOException e) {
+                System.err.printf("Erro na abertura do arquivo: %s.\n",
+                        e.getMessage());
+                alert.setTitle("Aluguel não encontrado!");
+                alert.setHeaderText("Escolha outro código de Aluguel.");
+                alert.showAndWait();
+                textFieldRelatorio.setText("");
+            }
+
+            System.out.println();
+            String labelTexto = "";
+            for (int j = 0; j < arrayList.size(); j++) {
+                System.out.println(arrayList.get(j));
+                labelTexto = labelTexto + "\n" + arrayList.get(j);
+            }
+            relatorio_Dados.setText(labelTexto);
+        }
+    }
+
+    public void credits(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Conteúdo:");
+        alert.setHeaderText("Neste programa pude desenvolver conhecimentos como: \nProgramação Orientada a Objetos;\nCriação e manipulação de Classes;\nEstruturas de Repetição e Blocos Condicionais;" +
+                "\nTratamento de Erros\nCriação de Banco de Dados em .txt;\nManipulação JavaFx e Scene Builder;\nEntre Outros...");
+        alert.showAndWait();
+
+        alert.setTitle("Agradecimento:");
+        alert.setHeaderText("Agradeço a minha namorada Mariana Coutinho pelas horas doadas para que eu pudesse terminar esse projeto <3;\nA comunidade do StackOverflow pelas dicas;\nE ao meu grande amigo Punk aka André pela ajuda durante todo o Projeto.");
+        alert.showAndWait();
+
+
+    }
+
+    public void sair(){
+        Platform.exit();
+    }
+    public void tab1(){
+        SingleSelectionModel<Tab> selectionModel = principal.getSelectionModel();
+        selectionModel.select(0);
+    }
+    public void tab2(){
+        SingleSelectionModel<Tab> selectionModel = principal.getSelectionModel();
+        selectionModel.select(1);
+    }
+    public void tab3(){
+        SingleSelectionModel<Tab> selectionModel = principal.getSelectionModel();
+        selectionModel.select(2);
+    }
+    public void tab4(){
+        SingleSelectionModel<Tab> selectionModel = principal.getSelectionModel();
+        selectionModel.select(3);
+    }
+    public void pesquisar_Cliente_Alugueis(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        String nome = "Cliente_"+codigo_Cliente.getText()+".txt";
+//        try {
+//            FileReader arq = new FileReader(nome);
+//            BufferedReader lerArq = new BufferedReader(arq);
+//
+//            String linha = lerArq.readLine();
+//            while (linha != null) {
+//                System.out.printf("%s\n", linha);
+//
+//                linha = lerArq.readLine(); // lê da segunda até a última linha
+//            }
+//
+//            arq.close();
+//        } catch (IOException e) {
+//            System.err.printf("Erro na abertura do arquivo: %s.\n",
+//                    e.getMessage());
+//        }
+//
+//        System.out.println();
+
+        try {
+            FileReader arq = new FileReader(nome);
+            BufferedReader lerArq = new BufferedReader(arq);
+
+            String linha = lerArq.readLine();
+
+            if(linha.equals("1")){
+                String linhaNome = Files.readAllLines(Paths.get(nome)).get(3);
+
+                aluguel_Mensagem_BomPagador.setText(linhaNome+" é bom pagador. Pode continuar o aluguel!");
+                codigo_Carro_Aluguel.setEditable(true);
+                data_Retirada_Veiculo.setEditable(true);
+                data_Devolucao_Veiculo.setEditable(true);
+            }
+            else {
+                aluguel_Mensagem_BomPagador.setText("O cliente não é bom pagador. Não poderemos liberar o carro!");
+                codigo_Carro_Aluguel.setEditable(false);
+                data_Retirada_Veiculo.setEditable(false);
+                data_Devolucao_Veiculo.setEditable(false);
+            }
+
+            arq.close();
+        } catch (IOException e) {
+            System.err.printf("Erro na abertura do arquivo: %s.\n",
+                    e.getMessage());
+            alert.setTitle("Cliente não encontrado!");
+            alert.setHeaderText("Escolha outro código de Cliente.");
+            alert.showAndWait();
+            codigo_Cliente.setText("");
+        }
+
+
+    }
+
+
+
+
+    ObservableList<String> estadoList = FXCollections.observableArrayList("RJ","SP","MG");
+    ObservableList<String> tipoEndList = FXCollections.observableArrayList("Comercial","Residencial");
+    ObservableList<String> bomPagadorList = FXCollections.observableArrayList("Sim","Não");
+    ObservableList<String> marcaCarroList = FXCollections.observableArrayList("Hyunday","Honda","Nissan");
+    ObservableList<String> carroNovoList = FXCollections.observableArrayList("Sim","Não");
+
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        estado_Cliente.setValue("Estados");
+        estado_Cliente.setItems(estadoList);
+
+        tipoEnd_Cliente.setValue("Tipo Endereço");
+        tipoEnd_Cliente.setItems(tipoEndList);
+
+        bomPagador_Cliente.setValue("Bom Pagador");
+        bomPagador_Cliente.setItems(bomPagadorList);
+
+        marca_Carro.setValue("Marca");
+        marca_Carro.setItems(marcaCarroList);
+
+        novo_Carro.setValue("Carro Novo");
+        novo_Carro.setItems(carroNovoList);
+
+
+
+
+    }
+}
